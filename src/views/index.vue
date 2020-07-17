@@ -233,9 +233,7 @@
   table {
     width: 100%;
     border-top: 1px solid #d5d5d5;
-    border-bottom: 1px solid #d5d5d5;
     padding-bottom: 10px;
-    margin-bottom: 30px;
 
     th {
       line-height: 34px;
