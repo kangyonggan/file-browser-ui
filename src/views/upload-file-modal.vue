@@ -1,6 +1,5 @@
 <template>
   <el-dialog
-    class="base-dialog"
     title="文件上传"
     :visible.sync="dialogVisible"
     :close-on-click-modal="false"
@@ -45,7 +44,7 @@
     </el-upload>
     <span slot="footer">
       <el-button
-        @click="close"
+        @click="dialogVisible = false"
       >
         关闭
       </el-button>
@@ -97,7 +96,6 @@
                 this.status = 'success';
             },
             close() {
-                this.dialogVisible = false;
                 this.$emit('reload');
             }
         }

@@ -13,8 +13,8 @@
           :key="index"
         >
           <router-link :to="getFullDir(index) + d">
-            {{ d }}
-          </router-link>/
+            {{ d }}/
+          </router-link>
         </li>
       </ul>
 
@@ -26,6 +26,25 @@
           <i class="el-icon-upload" />
           上传文件
         </el-button>
+        <el-button
+          size="small"
+          @click="$refs['mkdir'].show(rootPath, dir)"
+        >
+          <i class="el-icon-folder-add" />
+          创建文件夹
+        </el-button>
+        
+        <el-tooltip
+          effect="dark"
+          content="刷新列表"
+        >
+          <el-button
+            size="small"
+            @click="init($route)"
+          >
+            <i class="el-icon-refresh" />
+          </el-button>
+        </el-tooltip>
       </div>
     </div>
     <table>
@@ -116,9 +135,15 @@
       </tbody>
     </table>
 
-    <!--Upload file-->
+    <!--上传文件-->
     <upload-file-modal
       ref="upload-file"
+      @reload="reload"
+    />
+
+    <!--创建文件夹-->
+    <mkdir-modal
+      ref="mkdir"
       @reload="reload"
     />
   </div>
@@ -126,9 +151,10 @@
 
 <script>
     import UploadFileModal from './upload-file-modal';
+    import MkdirModal from './mkdir-modal';
 
     export default {
-        components: {UploadFileModal},
+        components: {UploadFileModal, MkdirModal},
         data() {
             return {
                 loading: false,
