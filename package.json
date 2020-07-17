@@ -7,7 +7,7 @@
     "dev": "vue-cli-service serve",
     "hd": "vue-cli-service serve --mode hd",
     "build": "vue-cli-service build",
-    "onekey-deploy": "vue-cli-service build;ssh root@172.190.105.90 'rm -rf /srv/apps/file/*';scp -r dist/* root@172.190.105.90:/srv/apps/file/",
+    "onekey-deploy": "vue-cli-service build;ssh root@172.190.105.90 'rm -rf /srv/apps/file-browser/*';scp -r dist/* root@172.190.105.90:/srv/apps/file-browser/",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {

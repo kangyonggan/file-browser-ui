@@ -1,5 +1,4 @@
 module.exports = {
-  publicPath: '/file/',
   productionSourceMap: false,
   configureWebpack: () => {
     if (process.env.NODE_ENV !== 'production') {
