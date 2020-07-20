@@ -105,6 +105,9 @@
                     return;
                 }
                 this.status = 'success';
+                if (this.autoClose) {
+                    this.dialogVisible = false;
+                }
             },
             close() {
                 this.$emit('reload');
