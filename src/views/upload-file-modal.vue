@@ -43,6 +43,13 @@
       </div>
     </el-upload>
     <span slot="footer">
+      <el-checkbox
+        v-model="autoClose"
+        @change="changeAutoClose"
+        style="margin-right: 10px;"
+      >
+        上传完毕自动关闭
+      </el-checkbox>
       <el-button
         @click="dialogVisible = false"
       >
@@ -57,6 +64,7 @@
         data() {
             return {
                 dialogVisible: false,
+                autoClose: localStorage.getItem('autoClose') || false,
                 rootPath: '',
                 fileName: '',
                 percent: 0,
@@ -68,6 +76,9 @@
             };
         },
         methods: {
+            changeAutoClose(autoClose) {
+                localStorage.setItem('autoClose', autoClose);
+            },
             show: function (rootPath, dir) {
                 this.fileName = '';
                 this.percent = 0;
@@ -85,7 +96,7 @@
                 return true;
             },
             onProgress(event) {
-                this.percent = event.percent.toFixed(0);
+                this.percent = event.percent.toFixed(0) * 1;
             },
             uploadSuccess(res) {
                 if (res.respCo !== '0000') {
