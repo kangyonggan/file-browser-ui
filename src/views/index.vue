@@ -33,7 +33,7 @@
           <i class="el-icon-folder-add" />
           创建文件夹
         </el-button>
-        
+
         <el-tooltip
           effect="dark"
           content="刷新列表"
@@ -55,7 +55,7 @@
           </th>
           <th
             align="left"
-            width="20%"
+            width="15%"
           >
             大小
           </th>
@@ -64,6 +64,12 @@
             width="20%"
           >
             最后修改时间
+          </th>
+          <th
+            align="left"
+            width="10%"
+          >
+            操作
           </th>
         </tr>
       </thead>
@@ -104,6 +110,13 @@
             <span style="font-size: 10px;">
               （{{ util.relativeTime(file.time) }}）
             </span>
+          </td>
+          <td>
+            <i
+              @click="remove(file)"
+              class="el-icon-delete"
+              style="color: red;cursor: pointer"
+            />
           </td>
         </tr>
         <tr v-show="!files.length">
@@ -165,6 +178,17 @@
             };
         },
         methods: {
+            remove(file) {
+                this.$confirm('确定删除文件 ' + file.name + ' 吗?', '警告',
+                    {type: 'warning'}).then(() => {
+                    this.axios.delete('removeFile?dir=' + this.dir + '&fileName='
+                        + encodeURIComponent(file.name)).then(() => {
+                        this.init(this.$route);
+                    }).catch(res => {
+                        this.error(res.respMsg);
+                    });
+                });
+            },
             getFullDir(index) {
                 let fullDir = '/';
                 for (let i = 0; i < index; i++) {
