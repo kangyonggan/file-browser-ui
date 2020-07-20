@@ -179,7 +179,11 @@
         },
         methods: {
             remove(file) {
-                this.$confirm('确定删除文件 ' + file.name + ' 吗?', '警告',
+                let title = '确定删除文件【' + file.name + '】吗？';
+                if (file.isDir) {
+                    title = '确定删除文件夹【' + file.name + '/】和全部子文件吗？';
+                }
+                this.$confirm(title, '警告',
                     {type: 'warning'}).then(() => {
                     this.axios.delete('removeFile?dir=' + this.dir + '&fileName='
                         + encodeURIComponent(file.name)).then(() => {
