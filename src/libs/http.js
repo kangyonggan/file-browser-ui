@@ -4,8 +4,8 @@ import VueAxios from 'vue-axios';
 import constants from './constants';
 import qs from 'qs';
 
-// 10s超时
-axios.defaults.timeout = 10000;
+// 60s超时
+axios.defaults.timeout = 60000;
 
 // 请求拦截器
 axios.interceptors.request.use(function (config) {

@@ -85,7 +85,7 @@
                 return true;
             },
             onProgress(event) {
-                this.percent = event.percent;
+                this.percent = event.percent.toFixed(0);
             },
             uploadSuccess(res) {
                 if (res.respCo !== '0000') {
